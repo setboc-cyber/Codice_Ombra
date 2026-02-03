@@ -1,60 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KERNEL_SYMBOL_ACTIVE</title>
+    <title>SISTEMA_COMPROMESSO // 02</title>
     <script data-goatcounter="https://setkernel1.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <style>
-        body { 
-            background-color: #000; 
-            color: #00ff00; 
-            font-family: 'Courier New', monospace; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
-            overflow: hidden; 
-        }
-        .k-symbol { 
-            font-size: 25rem; /* K Gigante */
-            font-weight: bold; 
-            line-height: 0.7; 
-            text-shadow: 0 0 30px #00ff00, 0 0 60px #008800; 
-            animation: glitch 1.5s infinite; 
-        }
-        .warning { 
-            color: #ff0000; 
-            font-size: 1.5rem; /* Scritta rossa più grande */
-            margin-top: 10px; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            text-align: center;
-            font-weight: bold;
-            background: rgba(255, 0, 0, 0.1);
-            padding: 5px 15px;
-        }
-        .sub-text { 
-            color: #888; 
-            font-size: 1.1rem; /* Testo secondario leggibile */
-            margin-top: 15px; 
-            text-align: center;
-        }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-4px, 4px); }
-            40% { transform: translate(-4px, -4px); text-shadow: 4px 0 red, -4px 0 blue; }
-            60% { transform: translate(4px, 4px); }
-            80% { transform: translate(4px, -4px); }
-            100% { transform: translate(0); }
-        }
+        body { background-color: #050505; color: #ff0000; font-family: 'Courier New', monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .box { width: 85%; max-width: 500px; border: 2px solid #ff0000; padding: 25px; box-shadow: 0 0 30px #900000; background: black; }
+        h1 { font-size: 1.2rem; text-align: center; color: white; background: #ff0000; margin-top: 0; }
+        p { font-size: 0.9rem; line-height: 1.5; margin: 15px 0; }
+        .status { color: #ff0000; font-weight: bold; text-decoration: blink; animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <div class="k-symbol">K</div>
-    <div class="warning">!!! KERNEL_PANIC !!!</div>
-    <div class="sub-text">> STATUS: ONLINE<br>> ATTENDERE FRAMMENTO_02...</div>
+    <div class="box">
+        <h1>ATTENZIONE: SETTORE_DANNEGGIATO</h1>
+        <p>> Analisi terminata. Abbiamo trovato la tua firma nel backend.</p>
+        <p>> Sei un errore di compilazione che cammina.</p>
+        <p>> <strong>STATO:</strong> <span class="status">IN_FASE_DI_CANCELLAZIONE</span></p>
+        <p>> Non fidarti di quello che vedi allo specchio domattina. È solo un rendering a bassa risoluzione.</p>
+        <p>> Attendere istruzioni per il Frammento_03...</p>
+    </div>
 </body>
 </html>
