@@ -14,53 +14,47 @@
         .cap-title { color: #fff; font-weight: bold; margin-top: 10px; display: block; }
         .cap-desc { color: #0a0; font-size: 11px; margin-bottom: 5px; padding-left: 10px; border-left: 1px solid #040; }
         .hidden { display: none; }
+        .error { color: #f00; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div id="console">
         <div id="login-screen">
-            <div class="line">> KERNEL INIT: USER_ERROR_V1.0</div>
-            <div class="line">> HARDWARE: COMPUTER_DI_CARNE RILEVATO.</div>
-            <div class="line">> STATO: SOFTWARE_ETICO_CORROTTO.</div>
+            <div class="line">> KERNEL_OS: USER_ERROR_V1.0_BOOT</div>
+            <div class="line">> IDENTIFICAZIONE HARDWARE... [OK]</div>
+            <div class="line">> ANALISI INTEGRITÀ DATI: FALLITA.</div>
             <br>
-            <div class="line" style="color:#888">> INSERIRE CHIAVE 'ENTROPIA' PER OTTENERE PERMESSI DI ROOT.</div>
+            <div class="line" style="color:#666">> RICHIESTA CHIAVE DI DECODIFICA PER ACCESSO ROOT.</div>
+            <div class="line" style="color:#444; font-size: 10px;">(Recuperare stringa di sblocco nei log di sistema)</div>
+            
             <div class="input-area">
                 <span>ROOT@KERNEL:~$ </span>
                 <input type="text" id="cmd" autofocus autocomplete="off">
             </div>
+            <div id="error-msg" class="error hidden">> CHIAVE ERRATA. ACCESSO NEGATO.</div>
         </div>
 
         <div id="database" class="hidden">
-            <div class="line">> ACCESSO ROOT: CONFERMATO.</div>
-            <div class="line">> CARICAMENTO INDICE DI SISTEMA...</div>
+            <div class="line">> VALIDAZIONE CHIAVE... [OK]</div>
+            <div class="line">> ESCALATION PRIVILEGI ESEGUITA.</div>
             
             <div class="success-box">
                 <span class="cap-title">PREFAZIONE: Prima del Boot Up</span>
-                <div class="cap-desc">Manuale di riparazione per hardware preistorico.</div>
+                <div class="cap-desc">Sostituzione software etico per computer di carne.</div>
 
                 <span class="cap-title">CAP. 1 & 2: Firewall e Sicurezza</span>
-                <div class="cap-desc">Protocollo DROP e Blacklist (In fase di download...)</div>
+                <div class="cap-desc">Protocollo DROP e gestione Blacklist. (In caricamento...)</div>
 
                 <span class="cap-title">CAP. 3: Teoria del Frontend</span>
-                <div class="cap-desc">UI sociale vs Backend opportunista. (Locked)</div>
+                <div class="cap-desc">UI sociale vs Backend opportunista. (Criptato)</div>
 
                 <span class="cap-title">CAP. 4: Il Virus del Denaro</span>
-                <div class="cap-desc">Sovrascrittura driver etici. (Locked)</div>
-
-                <span class="cap-title">CAP. 5: Obsolescenza Programmata</span>
-                <div class="cap-desc">Gestione Thermal Throttling post-40 cicli. (Locked)</div>
-
-                <span class="cap-title">CAP. 6: Memory Leak</span>
-                <div class="cap-desc">Processo DEFRAG.exe (Sonno). (Locked)</div>
-
-                <span class="cap-title">CAP. 7 & 8: Collisioni di Rete</span>
-                <div class="cap-desc">Incompatibilità Uomo/Donna. (Locked)</div>
-
-                <span class="cap-title">CAP. 9: Shutdown (HALT)</span>
-                <div class="cap-desc">Backup finale nel Cloud. (Locked)</div>
+                <div class="cap-desc">Sovrascrittura driver morali universali. (Criptato)</div>
+                
+                <div class="line" style="margin-top:15px; color:#888;">[... Altri capitoli in fase di indicizzazione ...]</div>
             </div>
             <br>
-            <div class="line">> SISTEMA PRONTO. RESTA IN ASCOLTO PER IL LOG_07.</div>
+            <div class="line">> SISTEMA PRONTO. ATTENDERE LOG_07 PER AGGIORNAMENTI.</div>
         </div>
     </div>
 
@@ -68,19 +62,23 @@
         const input = document.getElementById('cmd');
         const loginScreen = document.getElementById('login-screen');
         const database = document.getElementById('database');
+        const errorMsg = document.getElementById('error-msg');
 
         input.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                if (input.value.trim().toUpperCase() === 'ENTROPIA') {
+                const secret = "ENTROPIA"; // La chiave rimane solo nel codice
+                if (input.value.trim().toUpperCase() === secret) {
                     loginScreen.classList.add('hidden');
                     database.classList.remove('hidden');
                     document.body.style.background = "#000800";
                 } else {
                     input.value = '';
-                    alert("CHIAVE ERRATA. ACCESSO NEGATO.");
+                    errorMsg.classList.remove('hidden');
+                    setTimeout(() => { errorMsg.classList.add('hidden'); }, 2000);
                 }
             }
         });
+        // Forza il focus sull'input anche se cliccano altrove
         document.addEventListener('click', () => input.focus());
     </script>
 </body>
