@@ -7,18 +7,28 @@
     <style>
         :root { --neon-green: #00ff41; --dark-green: #003b00; }
         body { background: #000; color: var(--neon-green); font-family: 'Courier New', Courier, monospace; display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 100vh; margin: 0; overflow: hidden; }
+        
         #header-top { width: 100%; text-align: center; padding: 20px 0; font-size: 1.8rem; font-weight: bold; letter-spacing: 12px; border-bottom: 2px solid var(--dark-green); background: #000; z-index: 10; }
+
         #console { width: 90%; max-width: 800px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+        
         .line { margin-bottom: 12px; font-size: 1.1rem; }
-        .input-area { display: flex; align-items: center; margin-top: 25px; color: #fff; border-top: 1px solid var(--dark-green); padding-top: 20px; }
+        
+        /* Area Input */
+        .input-area { display: flex; align-items: center; margin-top: 20px; color: #fff; border-top: 1px solid var(--dark-green); padding-top: 20px; }
         #cmd { background: transparent; border: none; color: #fff; font-family: inherit; font-size: 1.3rem; outline: none; width: 100%; text-transform: uppercase; caret-color: transparent; }
+        
         .cursor { width: 12px; height: 24px; background: var(--neon-green); animation: blink 0.8s infinite; box-shadow: 0 0 8px var(--neon-green); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Footer */
         #footer-bottom { width: 100%; height: 180px; position: relative; border-top: 2px solid var(--dark-green); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .big-title { font-size: 3.5rem; font-weight: 900; letter-spacing: 8px; z-index: 5; color: var(--neon-green); text-shadow: 0 0 20px rgba(0, 255, 65, 0.5); text-align: center; }
+        .big-title { font-size: 3.5rem; font-weight: 900; letter-spacing: 8px; z-index: 5; color: var(--neon-green); text-shadow: 0 0 20px rgba(0, 255, 65, 0.5); text-align: center; line-height: 1; }
         .code-fill { position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-size: 10px; color: #001a00; line-height: 10px; overflow: hidden; z-index: 1; opacity: 0.6; white-space: pre-wrap; }
+
         #database { display: none; padding: 10px; }
         .cap { opacity: 0; transition: opacity 0.8s ease; margin-top: 18px; border-left: 3px solid var(--neon-green); padding-left: 15px; font-size: 1.2rem; color: #fff; }
+        
         .success-flash { animation: flash 0.4s ease-out; }
         @keyframes flash { from { background: var(--neon-green); } to { background: #000; } }
     </style>
@@ -29,8 +39,11 @@
 
     <div id="console">
         <div id="login-screen">
-            <span class="line">> ANALISI HARDWARE: CORPO_BIOLOGICO</span>
+            <span class="line" style="color: #fff;">> ANALISI HARDWARE: CORPO_BIOLOGICO</span>
             <span class="line">> STATO: SOFTWARE_ETICO_CORROTTO</span>
+            <br>
+            <span class="line" style="color: var(--neon-green); font-weight: bold; letter-spacing: 2px;">> INSERIRE CHIAVE DI DECODIFICA:</span>
+            
             <div class="input-area">
                 <span style="color: var(--neon-green); font-weight: bold;">ROOT@KERNEL:~$ </span>
                 <input type="text" id="cmd" autofocus autocomplete="off" spellcheck="false">
@@ -50,7 +63,6 @@
     </div>
 
     <script>
-        // Riempimento sfondo
         const bg = document.getElementById('code-bg');
         let codes = "";
         for(let i=0; i<1000; i++) { codes += Math.floor(Math.random()*2); }
@@ -70,25 +82,21 @@
             "<b>STATUS:</b> In attesa di LOG_07..."
         ];
 
-        // LOGICA DI SBLOCCO OTTIMIZZATA
         input.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 const passwordData = input.value.trim().toUpperCase();
-                
                 if (passwordData === "ENTROPIA") {
-                    executeUnlock();
+                    unlock();
                 } else {
                     input.value = '';
-                    console.log("Access Denied");
                 }
             }
         });
 
-        function executeUnlock() {
+        function unlock() {
             mainBody.classList.add('success-flash');
             loginScreen.style.display = 'none';
             database.style.display = 'block';
-            
             let i = 0;
             const interval = setInterval(() => {
                 if (i < chapters.length) {
@@ -96,12 +104,12 @@
                     div.className = 'cap';
                     div.innerHTML = chapters[i];
                     content.appendChild(div);
-                    setTimeout(() => { div.style.opacity = '1'; }, 50);
+                    setTimeout(() => { div.style.opacity = '1'; }, 100);
                     i++;
                 } else {
                     clearInterval(interval);
                 }
-            }, 600);
+            }, 800);
         }
 
         document.addEventListener('click', () => input.focus());
