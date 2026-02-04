@@ -2,86 +2,86 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>SISTEMA_COMPROMESSO // 02</title>
-    <script data-goatcounter="https://setkernel1.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KERNEL_USER_ERROR_V1.0</title>
     <style>
-        * { box-sizing: border-box; }
-        body { 
-            background-color: #000; 
-            color: #00ff00; /* Verde Neon Principale */
-            font-family: 'Courier New', monospace; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            width: 100vw;
-            margin: 0; 
-            overflow: hidden;
-            padding: 20px;
-            text-shadow: 0 0 5px #00ff00;
-        }
-        .box { 
-            width: 100%; 
-            max-width: 500px;
-            border: 2px solid #00ff00; 
-            padding: 30px; 
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); 
-            background: rgba(0, 0, 0, 0.9); 
-        }
-        h1 { 
-            font-size: 1.4rem; 
-            text-align: center; 
-            color: #000; 
-            background: #00ff00; 
-            margin: -30px -30px 25px -30px; 
-            padding: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: none;
-        }
-        p { 
-            font-size: 1.1rem; 
-            line-height: 1.5; 
-            margin: 15px 0; 
-            font-weight: bold;
-        }
-        .status-container {
-            margin-top: 25px;
-            text-align: center;
-        }
-        .status-label {
-            color: #00ff00;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .status-alert { 
-            color: #ff0000; /* Rosso solo qui */
-            font-weight: 900; 
-            font-size: 1.3rem;
-            animation: blinker 0.8s linear infinite; 
-            border: 2px solid #ff0000;
-            padding: 10px;
-            display: inline-block;
-            text-shadow: 0 0 10px #ff0000;
-            background: rgba(255, 0, 0, 0.1);
-        }
-        @keyframes blinker { 50% { opacity: 0; } }
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        #console { width: 100%; max-width: 800px; border: 1px solid #0f0; padding: 25px; background: rgba(0, 5, 0, 0.95); box-shadow: 0 0 30px rgba(0, 255, 0, 0.1); }
+        .line { margin-bottom: 5px; font-size: 13px; opacity: 0.9; }
+        .input-area { display: flex; color: #fff; margin-top: 15px; border-top: 1px solid #040; padding-top: 15px; }
+        input { background: transparent; border: none; color: #fff; font-family: inherit; font-size: 16px; outline: none; width: 100%; text-transform: uppercase; }
+        .success-box { border: 1px double #0f0; padding: 15px; margin-top: 20px; background: #001100; }
+        .cap-title { color: #fff; font-weight: bold; margin-top: 10px; display: block; }
+        .cap-desc { color: #0a0; font-size: 11px; margin-bottom: 5px; padding-left: 10px; border-left: 1px solid #040; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>ATTENTION: SETTORE_DANNEGGIATO</h1>
-        <p>> Analisi terminata. Abbiamo trovato la tua firma nel backend.</p>
-        <p>> Sei un errore di compilazione che cammina.</p>
-
-        <div class="status-container">
-            <span class="status-label">STATO ATTUALE:</span>
-            <span class="status-alert">CANCELLAZIONE IN CORSO</span>
+    <div id="console">
+        <div id="login-screen">
+            <div class="line">> KERNEL INIT: USER_ERROR_V1.0</div>
+            <div class="line">> HARDWARE: COMPUTER_DI_CARNE RILEVATO.</div>
+            <div class="line">> STATO: SOFTWARE_ETICO_CORROTTO.</div>
+            <br>
+            <div class="line" style="color:#888">> INSERIRE CHIAVE 'ENTROPIA' PER OTTENERE PERMESSI DI ROOT.</div>
+            <div class="input-area">
+                <span>ROOT@KERNEL:~$ </span>
+                <input type="text" id="cmd" autofocus autocomplete="off">
+            </div>
         </div>
 
-        <p style="margin-top: 25px;">> Non fidarti di quello che vedi allo specchio domattina. È solo un rendering a bassa risoluzione.</p>
-        <p style="color: #008800; font-size: 0.85rem; text-align: center; margin-top: 30px;">> Attendere istruzioni per il Frammento_03...</p>
+        <div id="database" class="hidden">
+            <div class="line">> ACCESSO ROOT: CONFERMATO.</div>
+            <div class="line">> CARICAMENTO INDICE DI SISTEMA...</div>
+            
+            <div class="success-box">
+                <span class="cap-title">PREFAZIONE: Prima del Boot Up</span>
+                <div class="cap-desc">Manuale di riparazione per hardware preistorico.</div>
+
+                <span class="cap-title">CAP. 1 & 2: Firewall e Sicurezza</span>
+                <div class="cap-desc">Protocollo DROP e Blacklist (In fase di download...)</div>
+
+                <span class="cap-title">CAP. 3: Teoria del Frontend</span>
+                <div class="cap-desc">UI sociale vs Backend opportunista. (Locked)</div>
+
+                <span class="cap-title">CAP. 4: Il Virus del Denaro</span>
+                <div class="cap-desc">Sovrascrittura driver etici. (Locked)</div>
+
+                <span class="cap-title">CAP. 5: Obsolescenza Programmata</span>
+                <div class="cap-desc">Gestione Thermal Throttling post-40 cicli. (Locked)</div>
+
+                <span class="cap-title">CAP. 6: Memory Leak</span>
+                <div class="cap-desc">Processo DEFRAG.exe (Sonno). (Locked)</div>
+
+                <span class="cap-title">CAP. 7 & 8: Collisioni di Rete</span>
+                <div class="cap-desc">Incompatibilità Uomo/Donna. (Locked)</div>
+
+                <span class="cap-title">CAP. 9: Shutdown (HALT)</span>
+                <div class="cap-desc">Backup finale nel Cloud. (Locked)</div>
+            </div>
+            <br>
+            <div class="line">> SISTEMA PRONTO. RESTA IN ASCOLTO PER IL LOG_07.</div>
+        </div>
     </div>
+
+    <script>
+        const input = document.getElementById('cmd');
+        const loginScreen = document.getElementById('login-screen');
+        const database = document.getElementById('database');
+
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                if (input.value.trim().toUpperCase() === 'ENTROPIA') {
+                    loginScreen.classList.add('hidden');
+                    database.classList.remove('hidden');
+                    document.body.style.background = "#000800";
+                } else {
+                    input.value = '';
+                    alert("CHIAVE ERRATA. ACCESSO NEGATO.");
+                }
+            }
+        });
+        document.addEventListener('click', () => input.focus());
+    </script>
 </body>
 </html>
