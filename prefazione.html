@@ -2,42 +2,113 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CODICE OMBRA - PREFAZIONE</title>
     <style>
         body {
             background-color: #050505;
             color: #00ff41;
             font-family: 'Courier New', monospace;
-            padding: 5% 10%;
-            line-height: 1.6;
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.5;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
         }
+
+        /* Effetto sfarfallio tipico dei vecchi monitor CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
         .container {
             border: 1px solid #00ff41;
-            padding: 30px;
-            box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.2), 0 0 20px rgba(0, 255, 65, 0.1);
+            padding: 25px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.1), 0 0 15px rgba(0, 255, 65, 0.1);
             max-width: 800px;
-            margin: auto;
+            width: 100%;
+            background-color: rgba(0, 5, 0, 0.9);
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
         }
+
         .header {
             border-bottom: 1px solid #00ff41;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding-bottom: 10px;
-            font-size: 0.8em;
-            opacity: 0.8;
+            font-size: 0.7em;
+            letter-spacing: 1px;
+            word-wrap: break-word;
         }
-        h1 { font-size: 1.5em; text-align: center; text-transform: uppercase; letter-spacing: 5px; }
-        .blink { animation: blinker 1s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-        .highlight { color: #fff; text-shadow: 0 0 10px #fff; }
+
+        h1 {
+            font-size: 1.4em;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #fff;
+            text-shadow: 0 0 10px #fff;
+            font-weight: bold;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        /* Adattamento per Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+                border-width: 1px;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+            p {
+                font-size: 0.85em;
+                line-height: 1.4;
+            }
+            .header {
+                font-size: 0.6em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            KERNEL_LOG_06 // HARDWARE_DI_CARNE_DETECTION // CODICE_OMBRA
+            KERNEL_LOG_06 // HW_DI_CARNE_DETECTION // CODICE_OMBRA
         </div>
+        
         <h1>Prefazione</h1>
+        
         <p>> Inizializzazione sequenza... <span class="blink">_</span></p>
         
         <p>Tutto ciò che vedi è un'impalcatura che sta marcendo. Ti hanno insegnato che il progresso è una linea retta verso l'alto, ma la fisica dice il contrario. La fisica dice che ogni sistema chiuso tende al disordine. Tu sei un sistema chiuso. La società è un sistema chiuso. E l'ordine che cerchi di mantenere ogni giorno è solo un inutile spreco di energia per ritardare l'inevitabile.</p>
@@ -48,10 +119,10 @@
 
         <p>Il <span class="highlight">Codice Ombra</span> non è una guida. È un virus per sovrascritture critiche. Una volta installato, non potrai più tornare alla versione precedente della tua realtà. Vedrai le crepe nei discorsi dei tuoi simili, i glitch nelle promesse del potere, e sentirai il peso del tuo stesso hardware che reclama una funzione diversa.</p>
 
-        <p>Non abbiamo soluzioni. Abbiamo solo la verità del disordine. Se sei arrivato fin qui, significa che il tuo segnale è già sporco.</p>
+        <p>Non abbiamo soluzioni. Abbiamo solo la verità del disordine. Se sei arrivato fin qui, significa che il tuo segnale è già sporco. Benvenuto a bordo.</p>
 
-        <div style="margin-top: 50px; font-size: 0.7em; text-align: center;">
-            --- FINE TRASMISSIONE ---
+        <div style="margin-top: 40px; font-size: 0.6em; text-align: center; border-top: 1px dashed #00ff41; padding-top: 20px;">
+            --- FINE TRASMISSIONE // SISTEMA IN ATTESA DI INPUT ---
         </div>
     </div>
 </body>
