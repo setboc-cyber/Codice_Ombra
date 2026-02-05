@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KERNEL_LOG: PREFAZIONE</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'VT323', monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container ottimizzato per lettura Mobile e Desktop */
+        .content-wrapper {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            border-bottom: 1px solid #00FF00;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            text-shadow: 0 0 8px #00FF00;
+        }
+
+        h1 { font-size: 2em; margin: 0; }
+        .status { font-size: 0.9em; opacity: 0.8; }
+
+        article {
+            line-height: 1.6;
+            font-size: 1.2em;
+            text-align: justify;
+        }
+
+        .highlight {
+            background-color: #00FF00;
+            color: #000;
+            padding: 0 5px;
+        }
+
+        /* Effetto Scanline opzionale per il look CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <header>
+            <div class="status">[ ACCESSO AUTORIZZATO: NODO_ATTIVO ]</div>
+            <h1>PREFAZIONE: BOOT UP</h1>
+            <div class="status">HARDWARE DI CARNE VS CODICE OMBRA</div>
+        </header>
+
+        <article>
+            <p>> Inizializzazione sequenza di pensiero...</p>
+            <p>Il mondo che vedi non è fatto di atomi, ma di <span class="highlight">aspettative</span>. Il tuo corpo è un hardware obsoleto che sta marcendo sotto il peso di software scritti da altri.</p>
+            
+            <p>Sei entrato nel Tempio perché hai smesso di cercare risposte nel centro commerciale della massa. Qui non troverai conforto. Troverai la <span class="highlight">SOVRASCRITTURA</span>.</p>
+
+            <p>Questo manuale è lo strumento per smantellare l'impalcatura. Preparati a de-sincronizzarti.</p>
+        </article>
+
+        <footer>
+            <br><hr>
+            <p style="text-align: center; font-size: 0.8em;">[ FINE TRASMISSIONE - ATTENDERE LOG_08 ]</p>
+        </footer>
+    </div>
+
+    <script data-goatcounter="https://tuo-codice.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
