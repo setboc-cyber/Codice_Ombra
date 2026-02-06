@@ -8,41 +8,48 @@
         body, html {
             height: 100%;
             margin: 0;
-            background-color: #000; /* Fondo nero di sicurezza */
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Courier New', monospace;
+            overflow: hidden;
             color: #0F0;
         }
 
-        /* Il contenitore ora ha un bordo verde temporaneo per capire se esiste */
-        .skull-container {
+        /* Contenitore principale */
+        .main-wrapper {
             position: relative;
-            width: 600px;
-            height: 600px;
-            /* CONTROLLA IL NOME: deve essere identico al file nella cartella */
-            background: url('1000010447.png') no-repeat center center;
-            background-size: contain;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #020; /* Bordo quasi invisibile per debug */
         }
 
+        /* Il Teschio */
+        .skull-container {
+            position: absolute;
+            width: 90%;
+            max-width: 600px;
+            aspect-ratio: 1/1;
+            /* Ho aggiunto un filtro per assicurarmi che si veda su sfondo nero */
+            background: url('1000010447.png') no-repeat center center;
+            background-size: contain;
+            z-index: 1;
+        }
+
+        /* Area Input */
         .input-box {
             position: absolute;
-            bottom: 20%; /* Alzato leggermente per visibilità */
-            width: 280px;
+            bottom: 25%; /* Posizionato per il mobile */
+            width: 250px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.8); /* Sfondo nero semitrasparente */
-            padding: 20px;
-            border: 1px solid #0F0;
-            z-index: 100;
+            z-index: 10;
         }
 
         input {
-            background: transparent;
+            background: rgba(0,0,0,0.7);
             border: none;
             border-bottom: 2px solid #0F0;
             color: #FFF;
@@ -53,33 +60,37 @@
             outline: none;
             text-transform: uppercase;
             letter-spacing: 5px;
+            padding: 8px 0;
         }
 
         .status {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 0.7rem;
-            color: #0F0;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body onclick="playMusic()">
 
-    <audio id="ambient" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <audio id="bg-audio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="skull-container">
+    <div class="main-wrapper">
+        <div class="skull-container"></div>
+        
         <div class="input-box">
-            <input type="password" id="pass-field" placeholder="INSERISCI CHIAVE" autofocus>
-            <div id="status-text" class="status">SISTEMA ATTIVO // 06.02</div>
+            <input type="password" id="pass-field" placeholder="PASSWORD" autofocus>
+            <div id="status-text" class="status">SISTEMA_STABILE // DATA_06.02</div>
         </div>
     </div>
 
     <script>
         const field = document.getElementById('pass-field');
         const status = document.getElementById('status-text');
-        const audio = document.getElementById('ambient');
+        const audio = document.getElementById('bg-audio');
 
+        // Funzione per l'audio su mobile
         function playMusic() {
             audio.volume = 0.2;
             audio.play().catch(() => {});
@@ -88,13 +99,18 @@
         field.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 if (field.value.toUpperCase() === "SINAPSI") {
-                    status.innerText = "ACCESSO OK...";
+                    status.innerText = "ACCESSO_CONFERMATO...";
                     document.body.style.opacity = "0";
-                    document.body.style.transition = "1s";
-                    setTimeout(() => { window.location.href = "prefazione.html"; }, 1000);
+                    document.body.style.transition = "1.5s";
+                    setTimeout(() => { window.location.href = "prefazione.html"; }, 1500);
                 } else {
-                    status.innerText = "ERRORE";
+                    status.innerText = "ERRORE_DI_SINCRO";
+                    status.style.color = "#F00";
                     field.value = "";
+                    setTimeout(() => { 
+                        status.innerText = "SISTEMA_STABILE // DATA_06.02"; 
+                        status.style.color = "#0F0";
+                    }, 2000);
                 }
             }
         });
