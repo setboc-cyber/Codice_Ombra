@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDENTIFICAZIONE_SISTEMA</title>
+    <title>SISTEMA_SINAPSI</title>
     <style>
         body, html {
             height: 100%; margin: 0; background-color: #000;
@@ -11,65 +11,81 @@
             font-family: 'Courier New', monospace; overflow: hidden; color: #0F0;
         }
 
-        /* Il Teschio - Forza il caricamento dall'URL di GitHub */
-        .skull-bg {
+        /* Contenitore Immagine con Fallback */
+        .skull-frame {
             position: absolute;
-            width: 90%; max-width: 600px; aspect-ratio: 1/1;
-            background: url('https://raw.githubusercontent.com/setkernel1/setkernel1.github.io/main/1000010447.png') no-repeat center center;
+            width: 90%; max-width: 500px; aspect-ratio: 1/1;
+            /* Proviamo a caricare il nuovo jpg */
+            background: url('teschio.jpg') no-repeat center center;
             background-size: contain;
             z-index: 1;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        .input-area {
-            position: absolute; bottom: 25%; width: 260px;
+        /* Se l'immagine manca, mostriamo un'ombra verde di sicurezza */
+        .skull-frame::after {
+            content: "SCAN_NEURALE";
+            position: absolute;
+            color: rgba(0, 255, 0, 0.2);
+            font-size: 3rem;
+            z-index: -1;
+        }
+
+        .input-box {
+            position: absolute; bottom: 20%; width: 280px;
             text-align: center; z-index: 10;
+            background: rgba(0,0,0,0.8); padding: 10px;
+            border-radius: 5px;
         }
 
         input {
-            background: rgba(0,0,0,0.6); border: none; border-bottom: 2px solid #0F0;
-            color: #FFF; font-family: 'Courier New', monospace; font-size: 1.3rem;
+            background: transparent; border: none; border-bottom: 2px solid #0F0;
+            color: #FFF; font-family: 'Courier New', monospace; font-size: 1.4rem;
             text-align: center; width: 100%; outline: none;
-            text-transform: uppercase; letter-spacing: 5px; padding: 10px 0;
-            text-shadow: 0 0 10px #0F0;
+            text-transform: uppercase; letter-spacing: 5px; padding: 5px 0;
         }
 
-        .status { margin-top: 15px; font-size: 0.75rem; letter-spacing: 2px; }
+        .status { margin-top: 10px; font-size: 0.7rem; letter-spacing: 2px; }
     </style>
 </head>
-<body onclick="playMusic()">
+<body onclick="playAmbient()">
 
-    <audio id="ambient-audio" loop>
+    <audio id="bg-track" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="skull-bg"></div>
+    <div class="skull-frame"></div>
     
-    <div class="input-area">
-        <input type="password" id="pass-field" placeholder="PASSWORD" autofocus autocomplete="off">
-        <div id="status-text" class="status">VIBRAZIONE_RILEVATA // 06.02</div>
+    <div class="input-box">
+        <input type="password" id="pass" placeholder="CHIAVE" autofocus>
+        <div id="status" class="status">SISTEMA_ONLINE // 06.02.2026</div>
     </div>
 
     <script>
-        const field = document.getElementById('pass-field');
-        const status = document.getElementById('status-text');
-        const audio = document.getElementById('ambient-audio');
+        const pass = document.getElementById('pass');
+        const status = document.getElementById('status');
+        const audio = document.getElementById('bg-track');
 
-        function playMusic() {
-            audio.volume = 0.3;
+        function playAmbient() {
+            audio.volume = 0.2;
             audio.play().catch(() => {});
         }
 
-        field.addEventListener('keypress', (e) => {
+        pass.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                if (field.value.toUpperCase() === "SINAPSI") {
-                    status.innerText = "ACCESSO_CONFERMATO...";
-                    document.body.style.transition = "opacity 1s";
+                if (pass.value.toUpperCase() === "SINAPSI") {
+                    status.innerText = "ACCESSO OK...";
+                    document.body.style.transition = "1s";
                     document.body.style.opacity = "0";
                     setTimeout(() => { window.location.href = "prefazione.html"; }, 1000);
                 } else {
-                    status.innerText = "ERRORE_DI_SISTEMA";
-                    field.value = "";
-                    setTimeout(() => { status.innerText = "VIBRAZIONE_RILEVATA // 06.02"; }, 1500);
+                    status.innerText = "ERRORE_LOGICA";
+                    status.style.color = "#F00";
+                    pass.value = "";
+                    setTimeout(() => { 
+                        status.innerText = "SISTEMA_ONLINE // 06.02.2026"; 
+                        status.style.color = "#0F0";
+                    }, 1500);
                 }
             }
         });
