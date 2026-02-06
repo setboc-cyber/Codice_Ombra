@@ -11,26 +11,17 @@
             font-family: 'Courier New', monospace; overflow: hidden; color: #0F0;
         }
 
-        /* Contenitore Immagine con Fallback */
+        /* Il Teschio Verde */
         .skull-frame {
             position: absolute;
             width: 90%; max-width: 500px; aspect-ratio: 1/1;
-            /* Proviamo a caricare il nuovo jpg */
+            /* Assicurati che il file si chiami teschio.jpg sul tuo GitHub */
             background: url('teschio.jpg') no-repeat center center;
             background-size: contain;
             z-index: 1;
-            display: flex; justify-content: center; align-items: center;
         }
 
-        /* Se l'immagine manca, mostriamo un'ombra verde di sicurezza */
-        .skull-frame::after {
-            content: "SCAN_NEURALE";
-            position: absolute;
-            color: rgba(0, 255, 0, 0.2);
-            font-size: 3rem;
-            z-index: -1;
-        }
-
+        /* Area di Input */
         .input-box {
             position: absolute; bottom: 20%; width: 280px;
             text-align: center; z-index: 10;
@@ -43,6 +34,7 @@
             color: #FFF; font-family: 'Courier New', monospace; font-size: 1.4rem;
             text-align: center; width: 100%; outline: none;
             text-transform: uppercase; letter-spacing: 5px; padding: 5px 0;
+            text-shadow: 0 0 10px #0F0;
         }
 
         .status { margin-top: 10px; font-size: 0.7rem; letter-spacing: 2px; }
@@ -57,34 +49,40 @@
     <div class="skull-frame"></div>
     
     <div class="input-box">
-        <input type="password" id="pass" placeholder="CHIAVE" autofocus>
+        <input type="password" id="pass" placeholder="CHIAVE" autofocus autocomplete="off">
         <div id="status" class="status">SISTEMA_ONLINE // 06.02.2026</div>
     </div>
 
     <script>
-        const pass = document.getElementById('pass');
-        const status = document.getElementById('status');
+        const passField = document.getElementById('pass');
+        const statusText = document.getElementById('status');
         const audio = document.getElementById('bg-track');
+        let playing = false;
 
         function playAmbient() {
-            audio.volume = 0.2;
-            audio.play().catch(() => {});
+            if(!playing) {
+                audio.volume = 0.2;
+                audio.play().catch(() => {});
+                playing = true;
+            }
         }
 
-        pass.addEventListener('keypress', (e) => {
+        passField.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                if (pass.value.toUpperCase() === "SINAPSI") {
-                    status.innerText = "ACCESSO OK...";
-                    document.body.style.transition = "1s";
+                if (passField.value.toUpperCase() === "SINAPSI") {
+                    statusText.innerText = "ACCESSO_CONFERMATO. INGRESSO...";
+                    document.body.style.transition = "1.5s";
                     document.body.style.opacity = "0";
-                    setTimeout(() => { window.location.href = "prefazione.html"; }, 1000);
-                } else {
-                    status.innerText = "ERRORE_LOGICA";
-                    status.style.color = "#F00";
-                    pass.value = "";
                     setTimeout(() => { 
-                        status.innerText = "SISTEMA_ONLINE // 06.02.2026"; 
-                        status.style.color = "#0F0";
+                        window.location.href = "prefazione.html"; 
+                    }, 1500);
+                } else {
+                    statusText.innerText = "ERRORE_DI_SINCRO";
+                    statusText.style.color = "#F00";
+                    passField.value = "";
+                    setTimeout(() => { 
+                        statusText.innerText = "SISTEMA_ONLINE // 06.02.2026"; 
+                        statusText.style.color = "#0F0";
                     }, 1500);
                 }
             }
