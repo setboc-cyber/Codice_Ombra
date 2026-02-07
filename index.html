@@ -1,42 +1,30 @@
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const val = input.value.toUpperCase();
-                
-                if (val === "SINAPSI") {
-                    // 1. Blocca subito l'input
-                    input.disabled = true;
-                    input.style.opacity = "0"; // Nasconde l'input per dare spazio al messaggio
-                    
-                    // 2. Forza la scrittura del messaggio di benvenuto
-                    msg.style.opacity = "1";
-                    msg.style.color = "#0F0";
-                    msg.innerHTML = "<span class='glow-text'>[IDENTITÀ_CONFERMATA: BENVENUTA_CARNE]</span>";
-
-                    // 3. Primo ritardo: mostra il messaggio per 2 secondi
-                    setTimeout(() => {
-                        msg.innerText = "INIZIALIZZAZIONE INTERFACCIA NEURALE...";
-                        
-                        // 4. Secondo ritardo: effetto oscuramento
-                        setTimeout(() => {
-                            document.body.style.transition = "1.5s";
-                            document.body.style.filter = "brightness(0)";
-                            
-                            // 5. Terzo ritardo: cambio pagina finale
-                            setTimeout(() => { 
-                                window.location.href = "prefazione.html"; 
-                            }, 1000);
-                        }, 1000);
-                    }, 2000);
-
-                } else {
-                    // Gestione errore (rimane invariata)
-                    msg.innerText = "SOGLIA_NEGATA // RESET_LOGICA";
-                    msg.style.color = "#F00";
-                    input.value = "";
+input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const val = input.value.toUpperCase();
+        if (val === "SINAPSI") {
+            input.disabled = true;
+            input.style.opacity = "0";
+            msg.style.opacity = "1";
+            msg.style.color = "#0F0";
+            msg.innerHTML = "<span class='glow-text'>[IDENTITÀ_CONFERMATA: BENVENUTA_CARNE]</span>";
+            setTimeout(() => {
+                msg.innerText = "INIZIALIZZAZIONE INTERFACCIA NEURALE...";
+                setTimeout(() => {
+                    document.body.style.transition = "1.5s";
+                    document.body.style.filter = "brightness(0)";
                     setTimeout(() => { 
-                        msg.innerText = "SISTEMA_STABILE // ATTESA_INPUT"; 
-                        msg.style.color = "#0F0";
-                    }, 2000);
-                }
-            }
-        });
+                        window.location.href = "prefazione.html"; 
+                    }, 1000);
+                }, 1000);
+            }, 2000);
+        } else {
+            msg.innerText = "SOGLIA_NEGATA // RESET_LOGICA";
+            msg.style.color = "#F00";
+            input.value = "";
+            setTimeout(() => { 
+                msg.innerText = "SISTEMA_STABILE // ATTESA_INPUT"; 
+                msg.style.color = "#0F0";
+            }, 2000);
+        }
+    }
+});
