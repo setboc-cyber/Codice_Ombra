@@ -26,7 +26,7 @@
         .abstract-logo {
             width: 80px; height: 80px;
             border: 2px solid #0F0;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 50px auto;
             position: relative;
             transform: rotate(45deg);
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
@@ -78,14 +78,13 @@
         <div class="abstract-logo"></div>
         
         <div class="interface-wrap">
-            <input type="password" id="pass" placeholder="CHIAVE" autofocus autocomplete="off">
+            <input type="password" id="pass" placeholder="IDENTIFY" autofocus autocomplete="off">
             <div class="scan-line"></div>
-            <div id="msg" class="status">SISTEMA_STABILE // ATTESA_ENTROPIA</div>
+            <div id="msg" class="status">SISTEMA_STABILE // ATTESA_INPUT</div>
         </div>
     </div>
 
     <script>
-        // Matrix Rain Effect
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -109,7 +108,6 @@
         }
         setInterval(drawMatrix, 50);
 
-        // Logic & Audio
         const input = document.getElementById('pass');
         const msg = document.getElementById('msg');
         const audio = document.getElementById('ambient');
@@ -121,17 +119,18 @@
 
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                // La logica rimane ENTROPIA, ma non è scritta da nessuna parte
                 if (input.value.toUpperCase() === "ENTROPIA") {
                     msg.innerText = "SINCRO_VALIDA. ACCESSO AL VARCO...";
                     document.body.style.transition = "2s";
                     document.body.style.filter = "brightness(0)";
                     setTimeout(() => { window.location.href = "prefazione.html"; }, 2000);
                 } else {
-                    msg.innerText = "CHIAVE_ERRATA // RESET_LOGICA";
+                    msg.innerText = "SOGLIA_NEGATA // RESET_LOGICA";
                     msg.style.color = "#F00";
                     input.value = "";
                     setTimeout(() => { 
-                        msg.innerText = "SISTEMA_STABILE // ATTESA_ENTROPIA"; 
+                        msg.innerText = "SISTEMA_STABILE // ATTESA_INPUT"; 
                         msg.style.color = "#0F0";
                     }, 2000);
                 }
