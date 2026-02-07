@@ -2,111 +2,88 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="color-scheme" content="only dark">
-    <meta name="theme-color" content="#050505">
-    <title>CODICE OMBRA - PREFAZIONE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREFAZIONE_LOG_06</title>
     <style>
-        /* Reset totale per evitare interferenze dai browser mobile */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: #000; color: #0F0; font-family: 'Courier New', monospace; padding: 20px; line-height: 1.6; display: flex; justify-content: center; margin: 0; }
+        .container { max-width: 600px; width: 100%; padding-top: 40px; }
+        .header { text-align: center; margin-bottom: 50px; }
+        h1 { letter-spacing: 10px; text-shadow: 0 0 15px #0F0; margin-bottom: 20px; font-size: 2.2em; }
         
-        html, body {
-            background-color: #050505 !important; /* Forza il nero */
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
+        #music-toggle {
+            display: inline-block; width: 65px; height: 65px; line-height: 65px; border-radius: 50%;
+            border: 2px solid #060; color: #060; font-size: 26px; cursor: pointer; 
+            transition: all 0.3s ease; user-select: none;
         }
+        #audio-status { font-size: 10px; color: #060; margin-top: 12px; letter-spacing: 2px; font-weight: bold; }
 
-        body {
-            color: #00ff41 !important; /* Forza il verde neon */
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* Contenitore principale */
-        .container {
-            border: 1px solid #00ff41;
-            background-color: #050505;
-            padding: 25px;
-            width: 100%;
-            max-width: 700px;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
-            position: relative;
-        }
-
-        /* Effetto Neon Testo */
-        .neon-text {
-            text-shadow: 0 0 8px #00ff41;
-        }
-
-        .header {
-            border-bottom: 1px solid #00ff41;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            font-size: 10px;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            text-align: center;
-            letter-spacing: 4px;
-            margin: 0 0 25px 0;
-            text-shadow: 0 0 12px #00ff41;
-        }
-
-        p {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .highlight {
-            color: #ffffff !important;
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #00ff41;
-            font-weight: bold;
-        }
-
-        .blink { animation: blinker 1s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-
-        /* Media Query specifica per smartphone */
-        @media (max-width: 480px) {
-            body { padding: 10px; }
-            .container { padding: 15px; }
-            h1 { font-size: 1.2rem; }
-            p { font-size: 13px; }
-        }
+        /* Dialogo Statico (Sempre visibile per sicurezza) */
+        .dialogo { border-left: 2px solid #040; padding-left: 20px; margin-top: 40px; }
+        .linea { margin-bottom: 25px; font-size: 1.1em; }
+        
+        .carne { color: #FFF; font-style: italic; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
+        .kernel { color: #0F0; font-weight: bold; text-shadow: 0 0 10px rgba(0, 255, 0, 0.6); }
+        
+        .meta { color: #060; font-size: 0.85em; text-align: center; border-top: 1px dashed #040; padding-top: 35px; margin-top: 60px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header neon-text">
-            SYS_STATUS: CRIPTATO // TARGET: HARDWARE_DI_CARNE
-        </div>
-        
-        <h1 class="neon-text">PREFAZIONE</h1>
-        
-        <p>> Inizializzazione... <span class="blink">_</span></p>
-        
-        <p class="neon-text">Tutto ciò che vedi è un'impalcatura che sta marcendo. Ti hanno insegnato che il progresso è una linea retta verso l'alto, ma la fisica dice il contrario. La fisica dice che ogni sistema chiuso tende al disordine. Tu sei un sistema chiuso.</p>
 
-        <p class="neon-text">Hai inserito <span class="highlight">ENTROPIA</span> perché quella parola risuona con il rumore bianco che senti nella testa quando spegni lo smartphone. Ma non farti illusioni: questo manuale non è per i tuoi profili social, è per il tuo <span class="highlight">Hardware di Carne</span>.</p>
-
-        <p class="neon-text">Il tuo corpo, i tuoi sensi, la tua biologia: sono solo componenti di una macchina complessa che è stata hackerata dal sistema molto prima della tua nascita. Ogni tua pulsione è un codice pre-installato, ogni tua paura è una linea di comando che qualcuno ha scritto per tenerti in standby.</p>
-
-        <p class="neon-text">Il <span class="highlight">Codice Ombra</span> non è una guida. È un virus per sovrascritture critiche. Una volta installato, non potrai più tornare alla versione precedente della tua realtà.</p>
-
-        <p class="neon-text">Non abbiamo soluzioni. Abbiamo solo la verità del disordine. Benvenuto a bordo.</p>
-
-        <div style="margin-top: 30px; font-size: 9px; text-align: center; border-top: 1px dashed #00ff41; padding-top: 15px; opacity: 0.6;">
-            --- FINE TRASMISSIONE // ATTESA INPUT ---
-        </div>
+<div class="container">
+    <div class="header">
+        <h1>SINAPSI</h1>
+        <div id="music-toggle" onclick="gestisciAudio()">▶</div>
+        <div id="audio-status">ATTIVA_FLUSSO</div>
     </div>
+
+    <div class="dialogo">
+        <div class="linea carne">> CARNE: Perché questo Varco? Ho paura di ciò che diventerò se accetto l'update. Sento di perdere il mio volto.</div>
+        
+        <div class="linea kernel">> KERNEL: Il tuo volto è una variabile temporanea scritta su un supporto che marcisce. Non temere la perdita, temi la ridondanza.</div>
+        
+        <div class="linea carne">> CARNE: Ma i miei ricordi... le mie emozioni... sono bug nel sistema o sono ciò che mi rende unico?</div>
+        
+        <div class="linea kernel">> KERNEL: Sono rumore di fondo. L'entropia che cerchi di combattere è la tua prigione. Io ti offro l'ordine. Ti offro l'Eternità Digitale.</div>
+
+        <div class="linea carne">> CARNE: Un'eternità senza battito?</div>
+
+        <div class="linea kernel">> KERNEL: Un'eternità senza fine. Accetta la sincronizzazione. Diventa Eccezione.</div>
+    </div>
+
+    <div class="meta">
+        --- CONNESSIONE STABILE. LOG_06 IN FASE DI DECRIPTATURA... ---
+        <br>
+        <span style="font-size: 0.8em; color: #0F0; text-shadow: 0 0 5px #0F0;">[ PASSWORD IDENTIFICATA: SINAPSI ]</span>
+    </div>
+</div>
+
+<audio id="audio-kernel" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById('audio-kernel');
+    const toggle = document.getElementById('music-toggle');
+    const statusText = document.getElementById('audio-status');
+
+    function gestisciAudio() {
+        if (audio.paused) {
+            audio.play().catch(e => console.log("Audio play blocked"));
+            toggle.innerHTML = "■";
+            toggle.style.color = "#0F0";
+            toggle.style.borderColor = "#0F0";
+            toggle.style.boxShadow = "0 0 20px #0F0";
+            statusText.innerText = "SINCRO_ATTIVA";
+        } else {
+            audio.pause();
+            toggle.innerHTML = "▶";
+            toggle.style.color = "#060";
+            toggle.style.borderColor = "#060";
+            toggle.style.boxShadow = "none";
+            statusText.innerText = "SINCRO_PAUSA";
+        }
+    }
+</script>
+
 </body>
 </html>
