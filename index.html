@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE_SISTEMA</title>
+    <title>SINAPSI.OS // CORE</title>
     <style>
         body, html {
             height: 100%; margin: 0; background-color: #000;
@@ -11,66 +11,83 @@
             font-family: 'Courier New', monospace; overflow: hidden; color: #0F0;
         }
 
-        /* Canvas per la pioggia di dati */
-        #matrix-canvas {
+        /* Pioggia di dati sullo sfondo */
+        #matrix {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; opacity: 0.3;
+            z-index: 1; opacity: 0.2;
         }
 
-        /* Interfaccia centrale */
-        .terminal-interface {
+        /* Interfaccia Centrale */
+        .main-container {
             position: relative; z-index: 10;
-            text-align: center; width: 100%;
+            text-align: center; width: 90%; max-width: 500px;
         }
 
-        .scanner-line {
-            width: 80%; max-width: 400px; height: 2px;
-            background-color: #0F0; margin: 20px auto;
-            box-shadow: 0 0 15px #0F0;
+        /* Logo stilizzato in puro CSS/Testo */
+        .logo {
+            font-size: 2.5rem; font-weight: bold; letter-spacing: 12px;
+            margin-bottom: 5px; text-shadow: 0 0 20px #0F0;
+            animation: flicker 3s infinite;
         }
 
+        .sub-logo {
+            font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 50px;
+            opacity: 0.7; border-top: 1px solid #0F0; display: inline-block; padding-top: 5px;
+        }
+
+        /* Campo Password */
         input {
-            background: transparent; border: none; color: #FFF;
-            font-family: 'Courier New', monospace; font-size: 1.8rem;
-            text-align: center; width: 100%; outline: none;
-            text-transform: uppercase; letter-spacing: 8px;
-            margin-bottom: 10px;
+            background: rgba(0, 30, 0, 0.5); border: 1px solid #0F0;
+            color: #FFF; font-family: 'Courier New', monospace; font-size: 1.5rem;
+            text-align: center; width: 80%; outline: none;
+            text-transform: uppercase; letter-spacing: 10px; padding: 15px;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
         }
 
-        .status-msg {
-            font-size: 0.8rem; letter-spacing: 3px;
-            text-shadow: 0 0 5px #0F0;
+        .line {
+            width: 100%; height: 2px; background: #0F0;
+            margin: 20px 0; box-shadow: 0 0 15px #0F0;
+        }
+
+        .status { font-size: 0.7rem; letter-spacing: 2px; }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.5; }
         }
     </style>
 </head>
 <body onclick="startAudio()">
 
-    <canvas id="matrix-canvas"></canvas>
+    <canvas id="matrix"></canvas>
 
     <audio id="ambient" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="terminal-interface">
-        <input type="password" id="access" placeholder="PASSWORD" autofocus autocomplete="off">
-        <div class="scanner-line"></div>
-        <div id="status" class="status-msg">SISTEMA_ATTIVO // SCAN_NEURALE_IN_CORSO</div>
+    <div class="main-container">
+        <div class="logo">// SINAPSI.OS //</div>
+        <div class="sub-logo">NEURAL_INTERFACE_v4.0</div>
+        
+        <div class="input-wrap">
+            <input type="password" id="pass" placeholder="PASSWORD" autofocus autocomplete="off">
+            <div class="line"></div>
+            <div id="msg" class="status">SISTEMA_ATTIVO // ATTESA_AUTENTICAZIONE</div>
+        </div>
     </div>
 
     <script>
-        // Effetto Matrix
-        const canvas = document.getElementById('matrix-canvas');
+        // Matrix Background
+        const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const letters = "01";
-        const fontSize = 16;
+        const letters = "0101010101010101";
+        const fontSize = 14;
         const columns = canvas.width / fontSize;
-        const drops = [];
-        for (let i = 0; i < columns; i++) drops[i] = 1;
+        const drops = Array(Math.floor(columns)).fill(1);
 
-        function drawMatrix() {
+        function draw() {
             ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#0F0";
@@ -82,11 +99,11 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 50);
+        setInterval(draw, 50);
 
-        // Audio e Password
-        const input = document.getElementById('access');
-        const status = document.getElementById('status');
+        // Logic
+        const pass = document.getElementById('pass');
+        const msg = document.getElementById('msg');
         const audio = document.getElementById('ambient');
 
         function startAudio() {
@@ -94,16 +111,22 @@
             audio.play().catch(() => {});
         }
 
-        input.addEventListener('keypress', (e) => {
+        pass.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                if (input.value.toUpperCase() === "SINAPSI") {
-                    status.innerText = "SINCRO_STABILIZZATA...";
-                    document.body.style.transition = "1s";
+                if (pass.value.toUpperCase() === "ENTROPIA") {
+                    msg.innerText = "SINCRO_EFFETTUATA. INGRESSO...";
+                    document.body.style.transition = "1.5s";
+                    document.body.style.filter = "brightness(5) hue-rotate(90deg)";
                     document.body.style.opacity = "0";
-                    setTimeout(() => { window.location.href = "prefazione.html"; }, 1000);
+                    setTimeout(() => { window.location.href = "prefazione.html"; }, 1500);
                 } else {
-                    status.innerText = "ERRORE_DI_CHIAVE";
-                    input.value = "";
+                    msg.innerText = "CHIAVE_ERRATA // ACCESSO_NEGATO";
+                    msg.style.color = "red";
+                    pass.value = "";
+                    setTimeout(() => { 
+                        msg.innerText = "SISTEMA_ATTIVO // ATTESA_AUTENTICAZIONE"; 
+                        msg.style.color = "#0F0";
+                    }, 2000);
                 }
             }
         });
