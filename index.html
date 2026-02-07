@@ -1,30 +1,178 @@
-input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const val = input.value.toUpperCase();
-        if (val === "SINAPSI") {
-            input.disabled = true;
-            input.style.opacity = "0";
-            msg.style.opacity = "1";
-            msg.style.color = "#0F0";
-            msg.innerHTML = "<span class='glow-text'>[IDENTITÀ_CONFERMATA: BENVENUTA_CARNE]</span>";
-            setTimeout(() => {
-                msg.innerText = "INIZIALIZZAZIONE INTERFACCIA NEURALE...";
-                setTimeout(() => {
-                    document.body.style.transition = "1.5s";
-                    document.body.style.filter = "brightness(0)";
-                    setTimeout(() => { 
-                        window.location.href = "prefazione.html"; 
-                    }, 1000);
-                }, 1000);
-            }, 2000);
-        } else {
-            msg.innerText = "SOGLIA_NEGATA // RESET_LOGICA";
-            msg.style.color = "#F00";
-            input.value = "";
-            setTimeout(() => { 
-                msg.innerText = "SISTEMA_STABILE // ATTESA_INPUT"; 
-                msg.style.color = "#0F0";
-            }, 2000);
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA_CORE</title>
+    <style>
+        body, html {
+            height: 100%; margin: 0; background-color: #000;
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Courier New', monospace; overflow: hidden; color: #0F0;
         }
-    }
-});
+
+        #matrix {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; opacity: 0.2;
+        }
+
+        .main-container {
+            position: relative; z-index: 10;
+            text-align: center; width: 90%; max-width: 450px;
+        }
+
+        .abstract-logo {
+            width: 80px; height: 80px;
+            border: 2px solid #0F0;
+            margin: 0 auto 50px auto;
+            position: relative;
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+            animation: pulse-core 4s infinite ease-in-out;
+        }
+        .abstract-logo::after {
+            content: ''; position: absolute;
+            top: 35%; left: 35%; width: 30%; height: 30%;
+            background: #0F0; box-shadow: 0 0 15px #0F0;
+        }
+
+        /* --- STILE INPUT E CURSORE --- */
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input {
+            background: transparent; 
+            border: none;
+            border-bottom: 2px solid #0F0;
+            color: #0F0; 
+            font-family: 'Courier New', monospace; 
+            font-size: 1.6rem;
+            text-align: center; 
+            width: 100%; 
+            outline: none;
+            text-transform: uppercase; 
+            letter-spacing: 12px; 
+            padding: 10px 0;
+            /* Colore del cursore mentre scrivi */
+            caret-color: #0F0; 
+        }
+
+        /* Cursore lampeggiante quando il campo è vuoto */
+        input:placeholder-shown {
+            background: transparent;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Creiamo un cursore personalizzato che appare quando l'input è vuoto */
+        .custom-cursor {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 15px;
+            height: 25px;
+            background-color: #0F0;
+            pointer-events: none;
+            animation: blink 1s step-end infinite;
+            z-index: -1; /* Sta dietro il testo se presente */
+        }
+
+        /* Nascondi il cursore finto se l'utente sta scrivendo o se c'è testo */
+        input:focus + .custom-cursor,
+        input:not(:placeholder-shown) + .custom-cursor {
+            display: none;
+        }
+
+        .scan-line {
+            width: 100%; height: 1px; background: rgba(0, 255, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .status { font-size: 0.75rem; letter-spacing: 3px; opacity: 0.8; }
+
+        @keyframes pulse-core {
+            0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.8; }
+            50% { transform: rotate(45deg) scale(1.1); opacity: 1; box-shadow: 0 0 30px rgba(0, 255, 0, 0.6); }
+        }
+    </style>
+</head>
+<body onclick="initAudio()">
+
+    <canvas id="matrix"></canvas>
+
+    <audio id="ambient" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-container">
+        <div class="abstract-logo"></div>
+        
+        <div class="input-wrapper">
+            <input type="password" id="pass" placeholder=" " autofocus autocomplete="off">
+            <div class="custom-cursor"></div>
+            <div class="scan-line"></div>
+            <div id="msg" class="status">SISTEMA_STABILE // ATTESA_INPUT</div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const bin = "010101";
+        const fontSize = 15;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = bin.charAt(Math.floor(Math.random() * bin.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        const input = document.getElementById('pass');
+        const msg = document.getElementById('msg');
+        const audio = document.getElementById('ambient');
+
+        function initAudio() {
+            audio.volume = 0.2;
+            audio.play().catch(() => {});
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (input.value.toUpperCase() === "SINAPSI") {
+                    msg.innerText = "SINCRO_VALIDA. ACCESSO AL VARCO...";
+                    document.body.style.transition = "2s";
+                    document.body.style.filter = "brightness(0)";
+                    setTimeout(() => { window.location.href = "prefazione.html"; }, 2000);
+                } else {
+                    msg.innerText = "SOGLIA_NEGATA // RESET_LOGICA";
+                    msg.style.color = "#F00";
+                    input.value = "";
+                    setTimeout(() => { 
+                        msg.innerText = "SISTEMA_STABILE // ATTESA_INPUT"; 
+                        msg.style.color = "#0F0";
+                    }, 2000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
